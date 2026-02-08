@@ -15,6 +15,11 @@ Package for integration Phantom Wallet in your WEB project.
 
 ## Getting started
 
+You definitely need to add Solana JavaScript SDK to your index.html:
+```
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+```
+
 Add this to your `pubspec.yaml`:
 ```yaml
 dependencies:
