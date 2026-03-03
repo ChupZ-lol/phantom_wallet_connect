@@ -1,6 +1,6 @@
 name: phantom_wallet_connect
 description: "Package for integration Phantom Wallet in your WEB project."
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/ChupZ-lol/phantom_wallet_connect
 homepage: https://chupz.lol/
 
