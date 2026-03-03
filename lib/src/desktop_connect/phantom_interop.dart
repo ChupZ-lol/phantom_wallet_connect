@@ -57,19 +57,9 @@ extension type PhantomProvider(JSObject o) implements JSObject {
 
   external JSPromise<JSObject> signTransaction(JSObject transaction);
 
-  external JSPromise<SignAndSendTransactionResponse> signAndSendTransaction(
-    JSObject transaction, [
-    SignAndSendOptions? options,
-  ]);
-
   external JSPromise<JSArray<JSObject>> signAllTransactions(
     JSArray<JSObject> transactions,
   );
-
-  external JSPromise<SignAndSendAllResponse> signAndSendAllTransactions(
-    JSArray<JSObject> transactions, [
-    SignAndSendOptions? options,
-  ]);
 }
 
 @JS()
@@ -96,23 +86,6 @@ extension type TransactionClass(JSObject o) implements JSObject {
 @JS()
 extension type SerializeConfig._(JSObject o) implements JSObject {
   external factory SerializeConfig({bool? verifySignatures});
-}
-
-@JS()
-extension type SignAndSendOptions._(JSObject o) implements JSObject {
-  external factory SignAndSendOptions({bool? skipPreflight});
-}
-
-@JS()
-extension type SignAndSendTransactionResponse(JSObject o) implements JSObject {
-  external String get signature;
-  external PublicKey get publicKey;
-}
-
-@JS()
-extension type SignAndSendAllResponse(JSObject o) implements JSObject {
-  external JSArray<JSString> get signatures;
-  external PublicKey get publicKey;
 }
 
 @JS()
