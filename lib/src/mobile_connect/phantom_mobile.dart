@@ -4,6 +4,7 @@ import 'package:phantom_wallet_connect/src/mobile_connect/mobile_connect.dart';
 import 'package:pinenacl/x25519.dart';
 import 'package:pinenacl/tweetnacl.dart';
 import 'package:solana/base58.dart';
+import 'package:web/web.dart' as web;
 
 class PhantomMobile {
   final PhantomStorage storage;
@@ -264,11 +265,21 @@ class PhantomMobile {
         await storage.write('userPublicKey', decrypted['public_key']);
       }
 
+      try {
+        _clearUrlParams();
+      } catch (_) {}
+
       // RETURN DATA (Signature, Transaction or Session)
       return decrypted;
     }
 
     return null;
+  }
+
+  //===================================================================
+  // Clear url params.
+  void _clearUrlParams() {
+    web.window.history.replaceState(null, '', web.window.location.pathname);
   }
 
   //===================================================================

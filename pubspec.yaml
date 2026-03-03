@@ -1,6 +1,6 @@
 name: phantom_wallet_connect
 description: "Package for integration Phantom Wallet in your WEB project."
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/ChupZ-lol/phantom_wallet_connect
 homepage: https://chupz.lol/
 
@@ -28,7 +28,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   assets:
     - assets/images/
 

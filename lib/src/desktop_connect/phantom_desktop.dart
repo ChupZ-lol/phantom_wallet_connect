@@ -104,26 +104,6 @@ class PhantomDesktop {
   }
 
   //===================================================================
-  // Sign and send one transaction.
-  // Returns String signature or null if there was an error/cancellation.
-  Future<String?> signAndSendTransaction(List<int> transactionBytes) async {
-    final provider = _provider;
-    if (provider == null || solanaWeb3 == null) {
-      throw Exception('Provider not found or Web3 script missing');
-    }
-
-    try {
-      final jsData = Uint8List.fromList(transactionBytes).toJS;
-      final txObj = solanaWeb3!.transaction.from(jsData);
-
-      final response = await provider.signAndSendTransaction(txObj).toDart;
-      return response.signature;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  //===================================================================
   // Mass signature. Only the signature, your server must send it.
   // Returns a list of signed transactions as bytes [List<int>] or null if there was an error/cancellation.
   Future<List<Uint8List>?> signAllTransactions(
@@ -160,40 +140,6 @@ class PhantomDesktop {
       }
 
       return resultList;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  //===================================================================
-  // Sending multiple transactions.
-  // Returns a list of Strings with signatures or null if there was an error/cancellation.
-  Future<List<String>?> signAndSendAllTransactions(
-    List<List<int>> transactionsBytesList,
-  ) async {
-    final provider = _provider;
-    if (provider == null || solanaWeb3 == null) return null;
-
-    try {
-      final jsTxArray = JSArray<JSObject>();
-
-      // We go through all transactions from Dart
-      for (final bytes in transactionsBytesList) {
-        final jsData = Uint8List.fromList(bytes).toJS;
-        // We wrap each one in JS Transaction
-        final txObj = solanaWeb3!.transaction.from(jsData);
-        jsTxArray.add(txObj);
-      }
-
-      final response = await provider
-          .signAndSendAllTransactions(jsTxArray)
-          .toDart;
-
-      final signatures = response.signatures.toDart
-          .map((jsStr) => jsStr.toDart)
-          .toList();
-
-      return signatures;
     } catch (e) {
       return null;
     }

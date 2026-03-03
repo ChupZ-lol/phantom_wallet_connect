@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:phantom_wallet_connect/phantom_wallet_connect.dart';
 import 'package:solana/base58.dart';
-import 'package:web/web.dart' as web;
 
 import 'server.dart';
 
@@ -127,13 +126,6 @@ class _WalletScreenState extends State<WalletScreen> {
         );
       }
     }
-    try {
-      _clearUrlParams();
-    } catch (_) {}
-  }
-
-  void _clearUrlParams() {
-    web.window.history.replaceState(null, '', web.window.location.pathname);
   }
 
   Future<void> _connect() async {

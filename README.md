@@ -10,38 +10,44 @@ Package for integration Phantom Wallet in your WEB project.
 ## Screenshots
 
 <p align="center">
-  <img src="https://github.com/ChupZ-lol/phantom_wallet_connect/blob/main/example/screenshots/example.png" alt="Example of Phantom Wallet connection in Flutter Web app" />
+  <img style="width: 300px; height: 600;" src="https://raw.githubusercontent.com/ChupZ-lol/phantom_wallet_connect/refs/heads/main/example/screenshots/example.png" alt="Example of Phantom Wallet connection in Flutter Web app" />
 </p>
 
 ## Getting started
 
 You definitely need to add Solana JavaScript SDK to your index.html:
+
 ```
 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 ```
 
 Add this to your `pubspec.yaml`:
+
 ```yaml
 dependencies:
   phantom_wallet_connect: ^0.1.0
 ```
 
 Import the package into your project:
+
 ```
 import 'package:phantom_wallet_connect/phantom_wallet_connect.dart';
 ```
+
 ## Usage
 
 Initialize the wallet manager, which will automatically detect the device from which the user logged in.
 Also initialize secure storage for creating and restoring a session.
 
 Example:
+
 ```
 final _manager = PhantomWalletManager();
 final _storage = SecurePhantomStorage();
 ```
 
 Initialize the manager in initState():
+
 ```
   Future<void> _initWallet() async {
     await _manager.initialize(
@@ -55,6 +61,7 @@ Initialize the manager in initState():
 
 Be careful!
 A network cluster is an enum:
+
 ```
 enum Cluster {
   mainnetBeta('mainnet-beta'),
@@ -66,19 +73,29 @@ enum Cluster {
 }
 ```
 
+In the Mobile version you need to process the input Uri using:
+
+```
+final uri = Uri.base;
+    final data = await _manager.adapter.handleDeepLink(uri);
+```
+
 You can use one of the custom buttons, or create your own.
 Also visit the repository page on Github, in the example folder you will find an example of use.
 
 If you decide to create your own connect button and need a logo, you can use one of these with enum:
-```
-enum PhantomLogoColor {
-  black('assets/images/phantom_logo_black.svg'),
-  purple('assets/images/phantom_logo_purple.svg'),
-  white('assets/images/phantom_logo_white.svg');
 
-  final String path;
-  const PhantomLogoColor(this.path);
+````
+
+enum PhantomLogoColor {
+black('assets/images/phantom_logo_black.svg'),
+purple('assets/images/phantom_logo_purple.svg'),
+white('assets/images/phantom_logo_white.svg');
+
+final String path;
+const PhantomLogoColor(this.path);
 }
+
 ```
 
 ## Contributing
@@ -86,4 +103,7 @@ enum PhantomLogoColor {
 Contributions are welcome! Please open issues and pull requests.
 
 ## License
+
 This package is licensed under the MIT License.
+```
+````
