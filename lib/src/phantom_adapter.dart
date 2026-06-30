@@ -1,38 +1,43 @@
+// ignore_for_file: public_member_api_docs
 import 'dart:typed_data';
 
 import 'package:phantom_wallet_connect/src/desktop_connect/phantom_desktop.dart';
 import 'package:phantom_wallet_connect/src/mobile_connect/phantom_mobile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// The main interface for connecting to the Phantom wallet.
+/// Provides methods for initialization, connection, and signing transactions.
 abstract class PhantomAdapter {
-  // Initialization (loading keys for mobile, checking window for desktop)
+  /// Initialization (loading keys for mobile, checking window for desktop)
   Future<void> init();
 
-  // Connecting a wallet
-  // Returns the wallet address if the connection was instantaneous (Desktop).
-  // Returns null if a redirect occurred (Mobile).
+  /// Connecting a wallet
+  /// Returns the wallet address if the connection was instantaneous (Desktop).
+  /// Returns null if a redirect occurred (Mobile).
   Future<String?> connect({bool silent = false});
 
-  // Disconnect
+  /// Disconnect
   Future<void> disconnect();
 
-  // Returns the signed bytes of the transaction (to be sent to the server).
+  /// Returns the signed bytes of the transaction (to be sent to the server).
   Future<Uint8List?> signTransaction(List<int> transaction);
 
-  // Returns a list of signed transactions.
+  /// Returns a list of signed transactions.
   Future<List<Uint8List>?> signAllTransactions(List<List<int>> transactions);
 
-  // Returns signature bytes (Signature).
+  /// Returns signature bytes (Signature).
   Future<Uint8List?> signMessage(String message);
 
-  // Processing incoming links (only needed for Mobile, Desktop will return null)
+  /// Processing incoming links (only needed for Mobile, Desktop will return null)
   Future<Map<String, dynamic>?> handleDeepLink(Uri uri);
 
+  /// Returns true if the Phantom wallet extension/app is installed.
   bool get isInstalled;
+
+  /// Returns the connected user's public key as a base58 string, if connected.
   String? get publicKey;
 }
 
-//===================================================================
 //===================================================================
 class PhantomAdapterDesktop implements PhantomAdapter {
   final _service = PhantomDesktop();
@@ -86,7 +91,6 @@ class PhantomAdapterDesktop implements PhantomAdapter {
   }
 }
 
-//===================================================================
 //===================================================================
 class PhantomAdapterMobile implements PhantomAdapter {
   final PhantomMobile _service;

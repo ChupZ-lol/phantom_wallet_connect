@@ -1,3 +1,7 @@
+## 0.1.3
+- Improved documentation and fixed imports.
+- Updated dependencies to the latest versions.
+
 ## 0.1.2
 
 - Cleaned up js_interop from obsolete methods

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 import 'dart:convert';
 
 import 'package:phantom_wallet_connect/src/mobile_connect/mobile_connect.dart';

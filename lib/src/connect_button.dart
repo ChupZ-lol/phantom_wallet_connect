@@ -1,31 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// Phantom logo color options for the connect button.
 enum PhantomLogoColor {
+  /// Black logo
   black('assets/images/phantom_logo_black.svg'),
+
+  /// Purple logo
   purple('assets/images/phantom_logo_purple.svg'),
+
+  /// White logo
   white('assets/images/phantom_logo_white.svg');
 
+  /// Path to the logo SVG file in the package assets.
   final String path;
   const PhantomLogoColor(this.path);
 }
 
+/// Ready-made UI button component for connecting the Phantom wallet.
+/// The widget automatically changes its state (Connected/Disconnected)
+/// and displays the abbreviated wallet address, if provided.
 class PhantomConnectButton extends StatelessWidget {
+  /// Текущий адрес подключенного кошелька.
+  /// Если `null`, кнопка отображает состояние "Connect".
   final String? walletAddress;
+
+  /// Displays a loading indicator if `true`.
   final bool isLoading;
 
+  /// Function called when Connect is clicked
   final VoidCallback onConnect;
+
+  /// Function called when the wallet is disconnected.
   final VoidCallback? onDisconnect;
 
-  // Button design customization
+  /// Button design customization
+  /// The button's primary background color. Defaults to the brand purple.
   final Color backgroundColor;
+
+  /// The color of the text and loading icon on the button.
+  /// If not specified, it is calculated automatically based on [backgroundColor].
   final Color? foregroundColor;
+
+  /// Phantom logo color. Defaults to [PhantomLogoColor.white].
   final PhantomLogoColor logoColor;
+
+  /// Button padding.
   final EdgeInsetsGeometry padding;
+
+  /// Button shape (borders, rounding).
   final OutlinedBorder? shape;
+
+  /// Button height. Default is 42.0.
   final double height;
+
+  /// Button width. If `null`, the button takes up the minimum necessary space.
   final double? width;
 
+  /// Creates a Phantom connect button with extensive customization options.
   const PhantomConnectButton({
     super.key,
     required this.onConnect,

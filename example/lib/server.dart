@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:solana/base58.dart';
 import 'package:solana/solana.dart';

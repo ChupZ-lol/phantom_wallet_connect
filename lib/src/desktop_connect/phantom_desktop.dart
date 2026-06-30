@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 import 'dart:typed_data';
@@ -19,8 +20,8 @@ class PhantomDesktop {
   }
 
   //===================================================================
-  // Connect wallet
-  // Returns the wallet address (String) or null if there was an error/cancellation.
+  /// Connect wallet
+  /// Returns the wallet address (String) or null if there was an error/cancellation.
   Future<String?> connect({bool silent = false}) async {
     final provider = _provider;
 
@@ -34,6 +35,7 @@ class PhantomDesktop {
 
     try {
       final options = silent ? ConnectOptions(onlyIfTrusted: true) : null;
+
       // Call the JS method connect()
       final response = await provider.connect(options).toDart;
 
@@ -47,7 +49,7 @@ class PhantomDesktop {
   }
 
   //===================================================================
-  // Disconnect wallet
+  /// Disconnect wallet
   Future<void> disconnect() async {
     final provider = _provider;
     if (provider != null) {
@@ -56,10 +58,10 @@ class PhantomDesktop {
   }
 
   //===================================================================
-  // Sign message
-  // Accepts a string that you can create on the server side.
-  // Returns the signature in bytes (Uint8List), which can be sent to the server for confirmation
-  // or null if there was an error/cancellation.
+  /// Sign message
+  /// Accepts a string that you can create on the server side.
+  /// Returns the signature in bytes (Uint8List), which can be sent to the server for confirmation
+  /// or null if there was an error/cancellation.
   Future<Uint8List?> signMessage(Uint8List messageBytes) async {
     final provider = _provider;
     if (provider == null) return null;
@@ -76,8 +78,8 @@ class PhantomDesktop {
   }
 
   //===================================================================
-  // Sign the transaction. Only the signature, your server must send it.
-  // Returns the signed transaction as bytes [List<int>] or null if there was an error/cancellation.
+  /// Sign the transaction. Only the signature, your server must send it.
+  /// Returns the signed transaction as bytes [List<int>] or null if there was an error/cancellation.
   Future<Uint8List?> signTransaction(List<int> transactionBytes) async {
     final provider = _provider;
     if (provider == null || solanaWeb3 == null) return null;
@@ -104,8 +106,8 @@ class PhantomDesktop {
   }
 
   //===================================================================
-  // Mass signature. Only the signature, your server must send it.
-  // Returns a list of signed transactions as bytes [List<int>] or null if there was an error/cancellation.
+  /// Mass signature. Only the signature, your server must send it.
+  /// Returns a list of signed transactions as bytes [List<int>] or null if there was an error/cancellation.
   Future<List<Uint8List>?> signAllTransactions(
     List<List<int>> transactionsBytesList,
   ) async {

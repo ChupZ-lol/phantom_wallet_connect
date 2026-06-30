@@ -25,7 +25,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  phantom_wallet_connect: ^0.1.0
+  phantom_wallet_connect: ^0.1.3
 ```
 
 Import the package into your project:
@@ -85,17 +85,15 @@ Also visit the repository page on Github, in the example folder you will find an
 
 If you decide to create your own connect button and need a logo, you can use one of these with enum:
 
-````
-
+```dart
 enum PhantomLogoColor {
-black('assets/images/phantom_logo_black.svg'),
-purple('assets/images/phantom_logo_purple.svg'),
-white('assets/images/phantom_logo_white.svg');
+  black('assets/images/phantom_logo_black.svg'),
+  purple('assets/images/phantom_logo_purple.svg'),
+  white('assets/images/phantom_logo_white.svg');
 
-final String path;
-const PhantomLogoColor(this.path);
+  final String path;
+  const PhantomLogoColor(this.path);
 }
-
 ```
 
 ## Contributing
@@ -105,5 +103,3 @@ Contributions are welcome! Please open issues and pull requests.
 ## License
 
 This package is licensed under the MIT License.
-```
-````
